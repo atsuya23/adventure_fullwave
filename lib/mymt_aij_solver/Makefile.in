@@ -1,0 +1,21 @@
+# ********************************************************************
+#  Copyright (C) 2000-2019 Shinobu Yoshimura, University of Tokyo,
+#  the Japan Society for the Promotion of Science (JSPS)
+#  All Rights Reserved
+# ********************************************************************
+
+include ../../Makefile.in
+
+
+AIJ_REAL       = __ADVFW_MATRIX_SYSTEM_REAL__
+AIJ_COMPLEX    = __ADVFW_MATRIX_SYSTEM_COMPLEX__
+
+AIJ_SYMMETRIC  = __ADVFW_MATRIX_SYSTEM_SYMMETRIC__
+AIJ_ASYMMETRIC = __ADVFW_MATRIX_SYSTEM_ASYMMETRIC__
+
+
+#AIJ_REAL       = __MYMT_AIJ_REAL__
+#AIJ_COMPLEX    = __MYMT_AIJ_COMPLEX__
+
+#AIJ_SYMMETRIC  = __MYMT_AIJ_SYMMETRIC__
+#AIJ_ASYMMETRIC = __MYMT_AIJ_ASYMMETRIC__

@@ -1,0 +1,13 @@
+Permittivity 2
+0 8.854e-12
+1 8.854e-10
+
+Antenna 1
+1 md antenna.dat
+
+Conductor 2
+0 0.0
+1 0.0
+
+AntennaOmega
+3141592653.59

@@ -1,0 +1,138 @@
+# ********************************************************************
+#  Copyright (C) 2000-2019 Shinobu Yoshimura, University of Tokyo,
+#  the Japan Society for the Promotion of Science (JSPS)
+#  All Rights Reserved
+# ********************************************************************
+
+# Include file for each Makefile 
+# Please modify for your own environment
+
+# path for ADVENTURE_IO system
+ADVSYSD        =      $(HOME)/ADVENTURE/bin
+# path for install directory
+INSTALL_DIR       =      $(HOME)/AdvFullWave
+INSTALL_BINDIR    =      $(INSTALL_DIR)/bin
+INSTALL_DOCDIR    =      $(INSTALL_DIR)/doc
+INSTALL_DOCFWDIR =      $(INSTALL_DOCDIR)/AdvFullWave
+
+# C compiler & linker
+CC      =      gcc
+LINKER  =      $(CC)
+AR      =      ar
+ARFLAGS =      cr
+
+# parallel C compiler & linker
+MPI_CC     =    mpicc
+MPI_LINKER =    $(MPI_CC)
+
+
+######
+
+CFLAGS  =      -O2 -Wall
+CFLAGS_G =     -g  -Wall 
+
+
+
+# Operating System
+OPERATING_SYSTEM = __ADVFW_OS_UNIX__ # UNIX or Linux
+#OPERATING_SYSTEM = __ADVFW_OS_OTHER__
+
+
+
+# computing mode
+MODE_SINGLE       = __ADVFW_SINGLE_MODE__
+MODE_PARALLEL     = __ADVFW_PARALLEL_MODE__
+MODE_HIERARCHICAL = __ADVFW_HIERARCHICAL_MODE__
+
+
+
+# Documents
+DOC_DIR     = doc
+MANUAL_JP   = manual-jp.pdf
+
+
+
+# Libraries
+# ADVENTURE library
+LIBS	    =  `$(ADVSYSD)/advsys-config --libs docio` -lm
+INCLUDE_ADV =  `$(ADVSYSD)/advsys-config --cflags`
+
+
+LIB_DIR     = lib
+
+
+# AdvFullWave standard library
+LIBFW_DIR  = $(LIB_DIR)/std
+LIBFW      = libfw
+
+EXT_SINGLE       = -s
+EXT_PARALLEL     = -p
+EXT_HIERARCHICAL = -h
+EXT_FEM_ANALYSIS = -f
+
+LIBFW_H = $(LIBFW)$(EXT_HIERARCHICAL).a
+LIBFW_P = $(LIBFW)$(EXT_PARALLEL).a
+LIBFW_S = $(LIBFW)$(EXT_SINGLE).a
+
+
+# AdvFullWave solver libraly (MIYAMOTO Solver)
+SOLVER_DIR  = $(LIB_DIR)/mymt_aij_solver
+SOLVER      = solver.a
+
+EXT_SOLVER_RS = -rs
+EXT_SOLVER_RA = -ra
+EXT_SOLVER_CS = -cs
+EXT_SOLVER_CA = -ca
+
+SOLVER_RS = solver$(EXT_SOLVER_RS).a
+SOLVER_RA = solver$(EXT_SOLVER_RA).a
+SOLVER_CS = solver$(EXT_SOLVER_CS).a
+SOLVER_CA = solver$(EXT_SOLVER_CA).a
+
+
+# AdvFullWave FEM libraly
+LIBFEM_DIR  = $(LIB_DIR)/fem
+LIBFEM      = libfem.a
+
+
+# AdvFullWave HDDM libraly
+LIBHDDM_DIR = $(LIB_DIR)/hddm
+LIBHDDM     = libhddm
+
+LIBHDDM_H = $(LIBHDDM)$(EXT_HIERARCHICAL).a
+LIBHDDM_P = $(LIBHDDM)$(EXT_PARALLEL).a
+LIBHDDM_S = $(LIBHDDM)$(EXT_SINGLE).a
+
+
+# program
+PRE_TARGET  = adv
+
+
+FEM_DIR         = FEM
+HDDM_DIR        = main
+TOOLS_DIR       = tools
+
+
+FULL_WAVE       = fullwave
+MAKEFEM         = makefem
+MAKEUCD         = makeUCD
+MAKEPML         = makepml
+FW2ADV          = fw2adv
+POST            = post
+METIS           = metis
+
+
+FEM_FULL_WAVE = $(PRE_TARGET)_$(FULL_WAVE)$(EXT_FEM_ANALYSIS)
+
+HDDM_FULL_WAVE_S = $(PRE_TARGET)_$(FULL_WAVE)$(EXT_SINGLE)
+HDDM_FULL_WAVE_P = $(PRE_TARGET)_$(FULL_WAVE)$(EXT_PARALLEL)
+HDDM_FULL_WAVE_H = $(PRE_TARGET)_$(FULL_WAVE)$(EXT_HIERARCHICAL)
+
+TOOLS_MAKEFEM   = $(PRE_TARGET)_$(MAKEFEM)
+TOOLS_MAKEUCD   = $(PRE_TARGET)_$(MAKEUCD)
+TOOLS_MAKEPML   = $(PRE_TARGET)_$(MAKEPML)
+
+TOOLS_FW2ADV   = $(PRE_TARGET)_$(FW2ADV)
+TOOLS_POST      = $(PRE_TARGET)_$(POST)
+TOOLS_METIS_S   = $(PRE_TARGET)_$(METIS)$(EXT_SINGLE)
+TOOLS_METIS_P   = $(PRE_TARGET)_$(METIS)$(EXT_PARALLEL)
